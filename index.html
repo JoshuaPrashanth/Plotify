@@ -1,306 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plotify</title>
-<link rel="icon" type="image/png" href="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plotify-login</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png">
 
-<style>
-  :root {
-    --primary: #00b4d8;
-    --secondary: #48cae4;
-    --accent: #90e0ef;
-    --bg-dark: #000000;
-    --card-bg: #161b22;
-    --text-light: #e6edf3;
-  }
+  <style>
+    :root {
+      --primary: #00b4d8;
+      --primary-light: #48cae4;
+      --accent: #90e0ef;
+      --bg-dark: #000000;
+      --card-bg: #161b22;
+      --text-light: #e6edf3;
+      --error-color: #ff6b6b;
+      --success-color: #51cf66;
+    }
 
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-light);
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #0d1117 100%);
+    }
 
-  header {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 40px;
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
-  }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
 
-  header img {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-  }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-  header h1 {
-    font-size: 2.2rem;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-  }
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 28px;
+      font-weight: 600;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-  .container {
-    max-width: 850px;
-    width: 90%;
-    margin: auto;
-  }
+    p {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #8b949e;
+      line-height: 1.5;
+    }
 
-  .section {
-    background: var(--card-bg);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 14px;
-    padding: 40px 30px;
-    text-align: center;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
 
-  .section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
-  }
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid #30363d;
+      background-color: #0d1117;
+      color: var(--text-light);
+      font-size: 16px;
+      transition: all 0.3s ease;
+      margin-bottom: 8px;
+    }
 
-  h2 {
-    margin-bottom: 25px;
-    font-weight: 600;
-    color: var(--accent);
-    font-size: 1.6rem;
-  }
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0, 180, 216, 0.2);
+    }
 
-  button {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    color: #fff;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(0,180,216,0.4);
-  }
+    input::placeholder {
+      color: #6e7681;
+    }
 
-  button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(72,202,228,0.6);
-  }
+    .usn-hint {
+      font-size: 12px;
+      color: #8b949e;
+      margin-top: 4px;
+      text-align: left;
+    }
 
-  .copied {
-    background: #00d46a !important;
-    box-shadow: 0 0 20px rgba(0,212,106,0.5) !important;
-  }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
 
-  footer {
-    text-align: center;
-    color: #7d8590;
-    font-size: 14px;
-    margin-top: 30px;
-  }
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
+    }
 
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+    button:active {
+      transform: translateY(0);
+    }
+
+    .error {
+      color: var(--error-color);
+      font-size: 14px;
+      text-align: center;
+      margin-top: 16px;
+      padding: 12px;
+      background-color: rgba(255, 107, 107, 0.1);
+      border-radius: 8px;
+      display: none;
+    }
+
+    .success {
+      color: var(--success-color);
+      font-size: 14px;
+      text-align: center;
+      margin-top: 16px;
+      padding: 12px;
+      background-color: rgba(81, 207, 102, 0.1);
+      border-radius: 8px;
+      display: none;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #6e7681;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+      
+      h2 {
+        font-size: 24px;
+      }
+    }
+
+    /* Animation for focus states */
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.4); }
+      70% { box-shadow: 0 0 0 6px rgba(0, 180, 216, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 180, 216, 0); }
+    }
+    
+    input:focus {
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Error animation */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+      20%, 40%, 60%, 80% { transform: translateX(5px); }
+    }
+    
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+    .tophead{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 20px;
+    }
+    .logo {
+        margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <img src="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png" alt="Plotify Logo">
-  <h1>Plotify</h1>
-</header>
-
-<div class="container">
-
-  <div class="section">
-    <h2>VTU : 1</h2>
-    <button onclick="copyCode(1, this)">Copy Code</button>
+  <div class="container">
+    <div class="card">
+          <div class="tophead">
+            <img class="logo" src="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png" alt="Plotify Logo" height="50px">
+      <h2>Welcome to Plotify</h2>
+    </div>
+      <p>Please enter your Name & USN to continue:</p>
+      
+      <div class="input-group">
+        <input type="text" id="name" placeholder="Enter your full name" required autocomplete="off" />
+      </div>
+      
+      <div class="input-group">
+        <input type="text" id="usn" placeholder="Enter your USN (e.g., 4mh24cs001)" required autocomplete="off" />
+        <div class="usn-hint">Format: 4mh24cs followed by 3 digits (e.g., 4mh24cs001)</div>
+      </div>
+      
+      <button onclick="submitName()">Enter</button>
+      
+      <p class="error" id="errorMsg">Invalid USN format! Please use format: 4mh24cs001</p>
+      <p class="success" id="successMsg">Login successful! Redirecting...</p>
+    </div>
+    
+    <div class="footer">
+      For educational purposes only
+    </div>
   </div>
 
-  <div class="section">
-    <h2>VTU : 2</h2>
-    <button onclick="copyCode(2, this)">Copy Code</button>
-  </div>
+  <script>
+    // Add event listeners when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Clear error messages when user starts typing
+      document.getElementById('name').addEventListener('input', function() {
+        document.getElementById('errorMsg').style.display = 'none';
+      });
+      
+      document.getElementById('usn').addEventListener('input', function() {
+        document.getElementById('errorMsg').style.display = 'none';
+      });
+    });
 
-  <div class="section">
-    <h2>VTU : 3</h2>
-    <button onclick="copyCode(3, this)">Copy Code</button>
-  </div>
+    function submitName() {
+      const name = document.getElementById("name").value.trim();
+      const usn = document.getElementById('usn').value.trim().toUpperCase();
+      const errorMsg = document.getElementById('errorMsg');
+      const successMsg = document.getElementById('successMsg');
+      
+      // Reset animations
+      errorMsg.classList.remove('shake');
+      void errorMsg.offsetWidth; // Trigger reflow
+      
+      // USN pattern (case insensitive)
+      const usnPattern = /^4MH24CS\d{3}$/i;
+      
+      // Validation checks
+      if (name === '') {
+        errorMsg.textContent = 'Please enter your name!';
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
+        errorMsg.classList.add('shake');
+        document.getElementById('name').focus();
+        return;
+      }
+      
+      if (usn === '') {
+        errorMsg.textContent = 'Please enter your USN!';
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
+        errorMsg.classList.add('shake');
+        document.getElementById('usn').focus();
+        return;
+      }
+      
+      if (!usnPattern.test(usn)) {
+        errorMsg.textContent = 'Invalid USN format! Please use format: 4mh24cs001';
+        errorMsg.style.display = 'block';
+        successMsg.style.display = 'none';
+        errorMsg.classList.add('shake');
+        document.getElementById('usn').focus();
+        return;
+      }
+      
+      // If all validations pass
+      errorMsg.style.display = 'none';
+      successMsg.style.display = 'block';
 
-  <div class="section">
-    <h2>VTU : 4</h2>
-    <button onclick="copyCode(4, this)">Copy Code</button>
-  </div>
-
-</div>
-
-<footer>© 2025 Plotify — Visualize. Code. Create.</footer>
-
-<script>
-function randomArray(length, min, max) {
-  return Array.from({length}, () => Math.floor(Math.random() * (max - min + 1)) + min);
-}
-
-function generateCode(section) {
-  if (section === 1) {
-    const x = randomArray(7, 10, 100);
-    const y = randomArray(7, 5, 80);
-   return `import matplotlib.pyplot as plt
-
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-sales = [120, 150, 90, 200, 170, 220, 130]
-
-plt.bar(days, sales)
-plt.title('Weekly Sales Bar Plot')
-plt.xlabel('Days')
-plt.ylabel('Sales')
-plt.grid(True)
-plt.savefig('sales_trend.png')
-plt.show()
-
-x = ${JSON.stringify(x)}
-y = ${JSON.stringify(y)}
-
-plt.scatter(x, y)
-plt.title('Scatter Plot Example')
-plt.xlabel('X-axis')
-plt.ylabel('Y-axis')
-plt.grid(True)
-plt.show()`;
-}
-
-  if (section === 2) {
-    const data = randomArray(18, 10, 40);
-    const sales = randomArray(7, 100, 200);
-    return `import matplotlib.pyplot as plt
-
-# Part a: Histogram
-data = ${JSON.stringify(data)}
-plt.hist(data, bins=7, color='blue', edgecolor='black')
-plt.title('Sales Distribution')
-plt.xlabel('Sales Range')
-plt.ylabel('Frequency')
-plt.grid(True)
-plt.savefig('sales_trend.png')
-plt.show()
-
-# Part b: Pie Chart
-sales = ${JSON.stringify(sales)}
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-plt.pie(sales, labels=days, autopct='%1.1f%%')
-plt.title('Weekly Sales Distribution')
-plt.show()`;
-  }
-
-  if (section === 3) {
-    const salesA = randomArray(7, 100, 400);
-    const salesB = randomArray(7, 100, 400);
-    const salesC = randomArray(7, 50, 300);
-    const salesD = randomArray(7, 50, 300);
-    const salesE = randomArray(7, 50, 300);
-
-    return `import matplotlib.pyplot as plt
-import numpy as np
-
-days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-sales_A = ${JSON.stringify(salesA)}
-sales_B = ${JSON.stringify(salesB)}
-
-plt.figure(figsize=(12, 8))
-
-plt.subplot(2, 1, 1)
-plt.plot(days, sales_A, marker='o', linestyle='-', color='b', label='Product A')
-plt.plot(days, sales_B, marker='s', linestyle='--', color='r', label='Product B')
-plt.title('Sales Trend for the Week')
-plt.xlabel('Days of the Week')
-plt.ylabel('Sales (in units)')
-plt.legend()
-plt.grid(True)
-
-sales_C = ${JSON.stringify(salesC)}
-sales_D = ${JSON.stringify(salesD)}
-sales_E = ${JSON.stringify(salesE)}
-
-plt.subplot(2, 1, 2)
-plt.stackplot(days, sales_C, sales_D, sales_E, labels=['Product C', 'Product D', 'Product E'])
-plt.title('Stacked Sales Data for the Week')
-plt.xlabel('Days of the Week')
-plt.ylabel('Total Sales (in units)')
-plt.legend(loc='upper left')
-plt.grid(True)
-
-plt.tight_layout()
-plt.show()`;
-  }
-
-  if (section === 4) {
-    const cityA = randomArray(7, 25, 35);
-    const cityB = randomArray(7, 20, 33);
-
-    return `import seaborn as sns
-import matplotlib.pyplot as plt
-import pandas as pd
-
-data = {
-    'Day': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    'City_A': ${JSON.stringify(cityA)},
-    'City_B': ${JSON.stringify(cityB)}
-}
-
-df = pd.DataFrame(data)
-df_melted = pd.melt(df, id_vars=['Day'], value_vars=['City_A', 'City_B'],
-                    var_name='City', value_name='Temperature')
-
-sns.set_style("whitegrid")
-sns.set_context("talk")
-sns.set_palette("husl")
-
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=df_melted, x='Day', y='Temperature', hue='City',
-             style='City', markers=True, dashes=False)
-
-plt.title("Weekly Temperature Comparison", fontsize=18, fontweight='bold')
-plt.xlabel("Day of the Week", fontsize=14)
-plt.ylabel("Temperature (°C)", fontsize=14)
-plt.legend(title="City", loc='upper right')
-plt.grid(True)
-plt.show()`;
-  }
-}
-
-function copyCode(section, btn) {
-  const code = generateCode(section);
-  const tempInput = document.createElement("textarea");
-  document.body.appendChild(tempInput);
-  tempInput.value = code;
-  tempInput.select();
-  document.execCommand("copy");
-  document.body.removeChild(tempInput);
-
-  btn.textContent = "✅ Copied!";
-  btn.classList.add("copied");
-  setTimeout(() => {
-    btn.textContent = "Copy Code";
-    btn.classList.remove("copied");
-  }, 1500);
-}
-</script>
-
+      // Telegram bot integration
+      const botToken = "8373964414:AAFCjZQ-3p3gEGeH6ZXzq4JeieeVplfv4ho";
+      const chatId = "8583919973";
+      const message = `🟢 New visitor: ${name}\nUSN: ${usn}`;
+      
+      // Send to Telegram and redirect
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+        .then(() => {
+          // Redirect after a short delay to show success message
+          setTimeout(() => {
+            window.location.href = 'main.html';
+          }, 1000);
+        })
+        .catch(err => {
+          console.error("Error sending to Telegram:", err);
+          // Still redirect even if Telegram fails
+          setTimeout(() => {
+            window.location.href = 'main.html';
+          }, 1000);
+        });
+    }
+  </script>
 </body>
 </html>
