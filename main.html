@@ -148,6 +148,16 @@
     <button onclick="copyCode(4, this)">Copy Code</button>
   </div>
 
+  <div class="section">
+    <h2>Stack Operation</h2>
+    <button onclick="copyCode(5, this)">Copy Code</button>
+  </div>
+
+  <div class="section">
+    <h2>Prefix & Postfix</h2>
+    <button onclick="copyCode(6, this)">Copy Code</button>
+  </div>
+
 </div>
 
 <footer>© 2025 Plotify — Visualize. Code. Create.</footer>
@@ -161,10 +171,11 @@ function generateCode(section) {
   if (section === 1) {
     const x = randomArray(7, 10, 100);
     const y = randomArray(7, 5, 80);
+    sales = randomArray(7, 90, 150);
    return `import matplotlib.pyplot as plt
 
 days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-sales = [120, 150, 90, 200, 170, 220, 130]
+sales = ${JSON.stringify(sales)};
 
 plt.bar(days, sales)
 plt.title('Weekly Sales Bar Plot')
@@ -282,6 +293,233 @@ plt.legend(title="City", loc='upper right')
 plt.grid(True)
 plt.show()`;
   }
+
+  if (section === 5) {
+  return `
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX 3
+
+int s[MAX];
+int top = -1;
+
+void push(int item);
+int pop();
+void display();
+
+void main()
+{
+    int choice, item;
+    while (1)
+    {
+        printf("\\n\\n\\n\\n-----------Menu----------- : ");
+        printf("\\n 1.Push an Element to Stack and Overflow demo ");
+        printf("\\n 2.Pop an Element from Stack and Underflow demo");
+        printf("\\n 3.Display ");
+        printf("\\n 4.Exit");
+        printf("\\n Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("\\nEnter an element to be pushed: ");
+                scanf("%d", &item);
+                push(item);
+                break;
+
+            case 2:
+                item = pop();
+                if (item != -1)
+                    printf("\\nElement popped is: %d", item);
+                break;
+
+            case 3:
+                display();
+                break;
+
+            case 4:
+                exit(1);
+
+            default:
+                printf("\\nPlease enter valid choice ");
+                break;
+        }
+    }
+}
+
+void push(int item)
+{
+    if (top == MAX - 1)
+    {
+        printf("\\n-----------Stack overflow-----------");
+        return;
+    }
+
+    top = top + 1;
+    s[top] = item;
+}
+
+int pop()
+{
+    int item;
+    if (top == -1)
+    {
+        printf("\\n-----------Stack underflow-----------");
+        return -1;
+    }
+    item = s[top];
+    top = top - 1;
+    return item;
+}
+
+void display()
+{
+    int i;
+    if (top == -1)
+    {
+        printf("\\n-----------Stack is empty-----------");
+        return;
+    }
+
+    printf("\\nStack elements are:\\n");
+    for (i = top; i >= 0; i--)
+        printf("| %d |\\n", s[i]);
+}
+`;
+}
+
+
+  if (section === 6) {
+  return `
+#include<stdio.h>
+#include<stdlib.h>
+
+void evaluate();
+void push(char);
+char pop();
+int prec(char);
+
+char infix[30], postfix[30], stack[30];
+int top = -1;
+
+void main()
+{
+    printf("\\n Enter the valid infix expression:");
+    scanf("%s", infix);
+    evaluate();
+    printf("\\nThe entered infix expression is :\\n %s \\n", infix);
+    printf("\\nThe corresponding postfix expression is :\\n %s \\n", postfix);
+}
+
+void evaluate()
+{
+    int i = 0, j = 0;
+    char symb, temp;
+
+    push('#');
+
+    for (i = 0; infix[i] != '\\0'; i++)
+    {
+        symb = infix[i];
+        switch (symb)
+        {
+            case '(':
+                push(symb);
+                break;
+
+            case ')':
+                temp = pop();
+                while (temp != '(')
+                {
+                    postfix[j] = temp;
+                    j++;
+                    temp = pop();
+                }
+                break;
+
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+            case '%':
+            case '^':
+            case '$':
+                while (prec(stack[top]) >= prec(symb))
+                {
+                    temp = pop();
+                    postfix[j] = temp;
+                    j++;
+                }
+                push(symb);
+                break;
+
+            default:
+                postfix[j] = symb;
+                j++;
+        }
+    }
+
+    while (top > 0)
+    {
+        temp = pop();
+        postfix[j] = temp;
+        j++;
+    }
+
+    postfix[j] = '\\0';
+}
+
+void push(char item)
+{
+    top = top + 1;
+    stack[top] = item;
+}
+
+char pop()
+{
+    char item;
+    item = stack[top];
+    top = top - 1;
+    return item;
+}
+
+int prec(char symb)
+{
+    int p;
+    switch (symb)
+    {
+        case '#':
+            p = -1;
+            break;
+
+        case '(':
+        case ')':
+            p = 0;
+            break;
+
+        case '+':
+        case '-':
+            p = 1;
+            break;
+
+        case '*':
+        case '/':
+        case '%':
+            p = 2;
+            break;
+
+        case '^':
+        case '$':
+            p = 3;
+            break;
+    }
+    return p;
+}
+`;
+}
+
 }
 
 function copyCode(section, btn) {
