@@ -149,13 +149,23 @@
   </div>
 
   <div class="section">
-    <h2>Stack Operation</h2>
+    <h2>VTU : 6</h2>
     <button onclick="copyCode(5, this)">Copy Code</button>
   </div>
 
   <div class="section">
-    <h2>Prefix & Postfix</h2>
+    <h2>VTU : 7</h2>
     <button onclick="copyCode(6, this)">Copy Code</button>
+  </div>
+
+  <div class="section">
+    <h2>Stack Operation</h2>
+    <button onclick="copyCode(7, this)">Copy Code</button>
+  </div>
+
+  <div class="section">
+    <h2>Prefix & Postfix</h2>
+    <button onclick="copyCode(8, this)">Copy Code</button>
   </div>
 
 </div>
@@ -295,6 +305,136 @@ plt.show()`;
   }
 
   if (section === 5) {
+
+    const reg_a = randomArray(6, 90, 210);
+    const reg_b = randomArray(6, 90, 210);
+    const reg_c = randomArray(6, 90, 210);
+    return `import plotly.graph_objects as go
+
+months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+region_A = ${JSON.stringify(reg_a)};
+region_B = ${JSON.stringify(reg_b)};
+region_C = ${JSON.stringify(reg_c)};
+line_fig = go.Figure()
+
+line_fig.add_trace(go.Scatter3d(
+    x=months, y=[1]*len(months), z=region_A,
+    mode='lines+markers',
+    line=dict(color='blue', width=4),
+    marker=dict(size=6, color='red', symbol='circle'),
+    name='Region A'
+))
+
+line_fig.add_trace(go.Scatter3d(
+    x=months, y=[2]*len(months), z=region_B,
+    mode='lines+markers',
+    line=dict(color='green', width=4),
+    marker=dict(size=6, color='orange', symbol='diamond'),
+    name='Region B'
+))
+
+line_fig.add_trace(go.Scatter3d(
+    x=months, y=[3]*len(months), z=region_C,
+    mode='lines+markers',
+    line=dict(color='purple', width=4),
+    marker=dict(size=6, color='yellow', symbol='square'),
+    name='Region C'
+))
+
+line_fig.update_layout(
+    title='3D Monthly Sales Line Plot',
+    scene=dict(
+        xaxis_title='Month',
+        yaxis_title='Region Index',
+        zaxis_title='Sales'
+    ),
+    legend_title='Regions'
+)
+
+line_fig.show()
+
+scatter_fig = go.Figure()
+
+scatter_fig.add_trace(go.Scatter3d(
+    x=months * 3,
+    y=[1]*6 + [2]*6 + [3]*6,
+    z=region_A + region_B + region_C,
+    mode='markers',
+    marker=dict(
+        size=8,
+        color=['red']*6 + ['green']*6 + ['blue']*6,
+        symbol=['circle', 'diamond', 'square']*6
+    ),
+    name='All Regions'
+))
+
+scatter_fig.update_layout(
+    title='3D Scatter Plot of Monthly Sales',
+    scene=dict(
+        xaxis_title='Month',
+        yaxis_title='Region Index',
+        zaxis_title='Sales'
+    )
+)
+
+scatter_fig.show()`;
+  }
+  
+  if (section === 6) {
+    const rev = randomArray(10, 1000, 3000);
+
+    return `import plotly.express as px
+import pandas as pd
+
+time_data = {
+    'Week': pd.date_range(start='2025-01-01', periods=10, freq='W'),
+    'Revenue': ${JSON.stringify(rev)}
+}
+time_df = pd.DataFrame(time_data)
+
+fig1 = px.line(
+    time_df,
+    x='Week',
+    y='Revenue',
+    title='Weekly Revenue Over Time (India)',
+    markers=True
+)
+fig1.update_layout(
+    xaxis_title='Week',
+    yaxis_title='Revenue (₹)',
+    font=dict(size=14),
+    template='plotly_white',
+    xaxis=dict(showgrid=True),
+    yaxis=dict(showgrid=True)
+)
+fig1.show()
+
+map_data = {
+    'City': ['Delhi', 'Mumbai', 'Bengaluru', 'Chennai', 'Kolkata', 'Hyderabad'],
+    'Latitude': [28.6139, 19.0760, 12.9716, 13.0827, 22.5726, 17.3850],
+    'Longitude': [77.2090, 72.8777, 77.5946, 80.2707, 88.3639, 78.4867],
+    'Revenue': [2800, 3000, 2600, 2200, 2100, 2500]
+}
+map_df = pd.DataFrame(map_data)
+
+fig2 = px.scatter_mapbox(
+    map_df,
+    lat="Latitude",
+    lon="Longitude",
+    size="Revenue",
+    hover_name="City",
+    color="Revenue",
+    color_continuous_scale=px.colors.sequential.Plasma,
+    size_max=30,
+    zoom=4,
+    mapbox_style="carto-positron",
+    title="City-wise Revenue Distribution (India)"
+)
+fig2.show()`;
+
+  }
+
+  if (section === 7) {
   return `
 #include<stdio.h>
 #include<stdlib.h>
@@ -391,7 +531,7 @@ void display()
 }
 
 
-  if (section === 6) {
+  if (section === 8) {
   return `
 #include<stdio.h>
 #include<stdlib.h>
