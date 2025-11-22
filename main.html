@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plotify/Home</title>
+<link rel="icon" type="image/png" href="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+<header>
+  <img src="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png" alt="Plotify Logo">
+  <h1>Plotify</h1>
+</header>
+
+<div class="container">
+  <!-- VTU Folder (Unlocked) -->
+  <div class="folder open" id="vtu-folder">
+    <div class="folder-header" onclick="toggleFolder('vtu-folder')">
+      <i class="fas fa-folder folder-icon"></i>
+      <h2>VTU Sections</h2>
+    </div>
+    <div class="folder-content">
+      <div class="section">
+        <h3>VTU : 1</h3>
+        <button onclick="copyCode(1, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>VTU : 2</h3>
+        <button onclick="copyCode(2, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>VTU : 3</h3>
+        <button onclick="copyCode(3, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>VTU : 4</h3>
+        <button onclick="copyCode(4, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>VTU : 6</h3>
+        <button onclick="copyCode(5, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>VTU : 7</h3>
+        <button onclick="copyCode(6, this)">Copy Code</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Structures Folder (Locked) -->
+  <div class="folder locked" id="ds-folder">
+    <div class="folder-header" onclick="toggleFolder('ds-folder')">
+      <i class="fas fa-folder folder-icon"></i>
+      <h2>Data Structures</h2>
+    </div>
+    <div class="folder-content">
+      <div class="section">
+        <h3>Stack Operation</h3>
+        <button onclick="copyCode(7, this)">Copy Code</button>
+      </div>
+      <div class="section">
+        <h3>Prefix & Postfix</h3>
+        <button onclick="copyCode(8, this)">Copy Code</button>
+      </div>
+    </div>
+    <div class="lock-overlay" id="lock-overlay">
+      <i class="fas fa-lock lock-icon"></i>
+      <p>This folder requires authentication</p>
+      <button class="unlock-btn" onclick="showAuthModal()">Unlock Folder</button>
+    </div>
+  </div>
+</div>
+
+<!-- Authentication Modal -->
+<div class="modal" id="auth-modal">
+  <div class="modal-content">
+    <h2>Authentication Required</h2>
+    <p>Enter password to access Data Structures folder:</p>
+    <input type="password" id="password-input" placeholder="Enter password">
+    <div class="modal-buttons">
+      <button class="cancel-btn" onclick="hideAuthModal()">Cancel</button>
+      <button onclick="authenticate()">Unlock</button>
+    </div>
+    <p id="error-msg" style="color: #ff6b6b; margin-top: 10px; display: none;">Incorrect password!</p>
+  </div>
+</div>
+
+<footer>© 2025 Plotify — Visualize. Code. Create.</footer>
+
+<script src="/js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plotify-login</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png">
+  <link rel="stylesheet" href="/css/index.css">
+  
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+          <div class="tophead">
+            <img class="logo" src="https://i.ibb.co/ksX89ZYm/Gemini-Generated-Image-658vpd658vpd658v.png" alt="Plotify Logo" height="50px">
+      <h2>Welcome to Plotify</h2>
+    </div>
+      <p>Please enter your Name & USN to continue:</p>
+      
+      <div class="input-group">
+        <input type="text" id="name" placeholder="Enter your full name" required autocomplete="off" />
+      </div>
+      
+      <div class="input-group">
+        <input type="text" id="usn" placeholder="Enter your USN (e.g., 4mh24cs001)" required autocomplete="off" />
+        <div class="usn-hint">Format: 4mh24cs followed by 3 digits (e.g., 4mh24cs001)</div>
+      </div>
+      
+      <button onclick="submitName()">Enter</button>
+      
+      <p class="error" id="errorMsg">Invalid USN format! Please use format: 4mh24cs001</p>
+      <p class="success" id="successMsg">Login successful! Redirecting...</p>
+    </div>
+    
+    <div class="footer">
+      For educational purposes only
+    </div>
+  </div>
+<script src="/js/index.js"></script>
+</body>
+</html>
